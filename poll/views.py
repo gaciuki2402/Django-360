@@ -13,3 +13,6 @@ def AboutUs(request):
 
 def Main(request):
     return HttpResponse("<h1>Hello,world.you're at the polls index</h1>")
+def info(request):
+    return HttpResponse("<h1> Welcome all</h1>")
+
