@@ -63,7 +63,7 @@ class Mess(models.Model):
     Date_Updated=models.DateTimeField(auto_now=True)
     Meal_Time=models.CharField(max_length=30,choices=Meal_Time_Choices)
     Available=models.BooleanField(default=True)
-    Number_of_Plates=models.IntegerField(max_length=5)
+    Number_of_Plates=models.IntegerField()
 
     def __str__(self):
         return f"{self.Food}"
@@ -77,6 +77,43 @@ class Fruit(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class Manufacturer(models.Model):
+    name_of_the_Manufacturer=models.CharField(max_length=40,unique=True)
+    def __str__(self):
+        return f"{self.name_of_the_Manufacturer}"
+        
+class Car(models.Model):
+    manufacturer=models.ForeignKey(Manufacturer,on_delete=models.CASCADE)
+    car=models.CharField(max_length=12)
+    No_Plate=models.CharField(max_length=10,unique=True)
+
+    
+    def __str__(self):
+        return f"{self.manufacturer}"
+
+class Publication(models.Model):
+    title=models.CharField(max_length=100)
+    
+    class Meta:
+        ordering=["title"]
+    def __str__(self):
+        return self.title
+
+class Article(models.Model):
+    headline=models.CharField(max_length=100)
+    publications=models.ManyToManyField(Publication)
+
+    class Meta:
+        ordering=["headline"]
+    def __str__(self):
+        return self.headline
+        
+
+
+
+
+
 
 
 
